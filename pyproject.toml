@@ -4,6 +4,12 @@ version = "0.1.0"
 description = "Protocol definitions for zchat multi-agent collaboration"
 requires-python = ">=3.11"
 dependencies = []
+license = "MIT"
+authors = [{ name = "ezagent42" }]
+
+[project.urls]
+Homepage = "https://github.com/ezagent42/zchat-protocol"
+Repository = "https://github.com/ezagent42/zchat-protocol"
 
 [build-system]
 requires = ["hatchling"]
