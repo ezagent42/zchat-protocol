@@ -4,10 +4,8 @@ AGENT_SEPARATOR = "-"
 
 
 def scoped_name(name: str, username: str) -> str:
-    """Add username prefix to agent name if not already scoped.
+    """Always add username prefix to agent name.
     'helper' + 'alice' → 'alice-helper'
-    'alice-helper' + 'alice' → 'alice-helper' (no change)
+    'alice-helper' + 'alice' → 'alice-alice-helper'
     """
-    if AGENT_SEPARATOR in name:
-        return name
     return f"{username}{AGENT_SEPARATOR}{name}"
