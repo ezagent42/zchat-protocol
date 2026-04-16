@@ -12,6 +12,13 @@ from zchat_protocol.mode import ConversationMode
 from zchat_protocol.participant import Participant, ParticipantRole
 
 
+# Gate 规则表: (mode, role) → 强制 visibility（覆盖 requested）
+_GATE_RULES: dict[tuple[str, str], MessageVisibility] = {
+    (ConversationMode.COPILOT.value, ParticipantRole.OPERATOR.value): MessageVisibility.SIDE,
+    (ConversationMode.TAKEOVER.value, ParticipantRole.AGENT.value): MessageVisibility.SIDE,
+}
+
+
 def gate_message(
     conversation: Conversation,
     sender: Participant,
@@ -24,21 +31,10 @@ def gate_message(
     if requested_visibility == MessageVisibility.SIDE:
         return MessageVisibility.SIDE
 
-    # 以下处理 requested_visibility == PUBLIC
-    mode = ConversationMode(conversation.mode)
-    role = sender.role
-
-    if mode == ConversationMode.AUTO:
-        return MessageVisibility.PUBLIC
-
-    if mode == ConversationMode.COPILOT:
-        if role == ParticipantRole.OPERATOR:
-            return MessageVisibility.SIDE  # operator 消息降级
-        return MessageVisibility.PUBLIC
-
-    if mode == ConversationMode.TAKEOVER:
-        if role == ParticipantRole.AGENT:
-            return MessageVisibility.SIDE  # agent 消息降级
-        return MessageVisibility.PUBLIC
-
+    # dict lookup: (mode, role) → forced visibility
+    role_value = sender.role.value if hasattr(sender.role, "value") else sender.role
+    key = (conversation.mode, role_value)
+    forced = _GATE_RULES.get(key)
+    if forced is not None:
+        return forced
     return requested_visibility
