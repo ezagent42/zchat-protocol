@@ -1,15 +1,13 @@
-"""zchat protocol specification — authoritative definitions for conversation primitives.
+"""zchat-protocol — 格式合同与编解码函数库。
 
-Modules:
-- naming: Agent naming conventions (scoped_name, AGENT_SEPARATOR)
-- sys_messages: IRC system message encode/decode
-- conversation: Conversation + ConversationState state machine
-- mode: ConversationMode + transition rules
-- event: EventType + Event
-- commands: Command parsing
-- participant: Participant + ParticipantRole
-- message_types: Message + MessageVisibility
-- timer: Timer + TimerAction
+本包**只包含**:
+- irc_encoding: IRC PRIVMSG 前缀编解码
+- ws_messages: WebSocket JSON 信封
+- naming: agent 命名规则
+
+**不包含**任何运行时状态、I/O、业务逻辑。
 """
 
-PROTOCOL_VERSION = "0.2"
+from zchat_protocol import irc_encoding, ws_messages, naming
+
+__all__ = ["irc_encoding", "ws_messages", "naming"]
