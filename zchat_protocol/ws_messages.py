@@ -13,9 +13,9 @@ class WSType:
     REGISTER = "register"      # bridge → cs 注册
     REGISTERED = "registered"  # cs → bridge 注册确认
     MESSAGE = "message"        # 双向：普通消息（content 含 IRC 前缀）
-    COMMAND = "command"        # 备用：显式命令（目前走 message 中的 "/" 前缀路径）
+    COMMAND = "command"        # 预留，当前未使用（命令走 message + "/" 前缀）
     EVENT = "event"            # cs → bridge 状态事件
-    ACK = "ack"                # cs → bridge 操作确认
+    ACK = "ack"                # 预留，当前未使用
 
 
 def build_register(bridge_type: str, instance_id: str, capabilities: list[str] | None = None) -> dict[str, Any]:

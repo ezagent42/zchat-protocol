@@ -39,7 +39,7 @@ def encode_sys(payload: dict[str, Any]) -> str:
 
 
 def make_sys_payload(nick: str, sys_type: str, body: dict[str, Any], ref_id: str | None = None) -> dict[str, Any]:
-    """构造一个 sys 消息 payload（等价于旧 sys_messages.make_sys_message）。"""
+    """构造一个 sys 消息 payload。"""
     return {
         "id": os.urandom(4).hex(),
         "nick": nick,

@@ -58,9 +58,9 @@ def test_build_event_no_data():
 
 
 def test_build_register():
-    msg = build_register(bridge_type="feishu", instance_id="inst-001", capabilities=["send", "receive"])
+    msg = build_register(bridge_type="test", instance_id="inst-001", capabilities=["send", "receive"])
     assert msg["type"] == WSType.REGISTER
-    assert msg["bridge_type"] == "feishu"
+    assert msg["bridge_type"] == "test"
     assert msg["instance_id"] == "inst-001"
     assert "send" in msg["capabilities"]
 
