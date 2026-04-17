@@ -14,18 +14,14 @@ class Command:
 
 
 # 命令定义：name → 参数名列表（按位置顺序）
+# 仅包含 infra 命令；业务命令（assign/reassign/squad/status/review）已移除
 _COMMAND_DEFS: dict[str, list[str]] = {
-    "hijack": [],
-    "release": [],
-    "copilot": [],
-    "resolve": [],
-    "abandon": [],
-    "assign": ["agent_nick", "operator_id"],
-    "reassign": ["agent_nick", "from_operator", "to_operator"],
-    "squad": ["target"],
-    "status": ["target"],
-    "dispatch": ["conversation_id", "agent_nick"],
-    "review": [],
+    "hijack": [],           # infra: mode 切换
+    "release": [],          # infra: mode 切换
+    "copilot": [],          # infra: mode 切换
+    "resolve": [],          # infra: 关闭 conversation
+    "abandon": [],          # infra: 关闭 conversation
+    "dispatch": ["conversation_id", "agent_nick"],  # infra: agent 加入 channel
 }
 
 
