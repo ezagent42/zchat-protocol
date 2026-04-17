@@ -32,11 +32,6 @@ class EventType(Enum):
     TIMER_SET = "timer.set"
     TIMER_EXPIRED = "timer.expired"
     TIMER_CANCELLED = "timer.cancelled"
-    # SLA
-    SLA_BREACH = "sla.breach"
-    # Squad
-    SQUAD_ASSIGNED = "squad.assigned"
-    SQUAD_REASSIGNED = "squad.reassigned"
 
 
 @dataclass
