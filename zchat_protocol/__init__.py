@@ -5,7 +5,6 @@ Modules:
 - sys_messages: IRC system message encode/decode
 - conversation: Conversation + ConversationState state machine
 - mode: ConversationMode + transition rules
-- gate: gate_message() visibility enforcement
 - event: EventType + Event
 - commands: Command parsing
 - participant: Participant + ParticipantRole
