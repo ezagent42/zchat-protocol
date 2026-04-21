@@ -80,7 +80,7 @@ def test_parse_known_types():
 
 def test_parse_unknown_type_raises():
     with pytest.raises(ValueError, match="unknown WS message type"):
-        parse({"type": "customer_message", "channel": "#x"})
+        parse({"type": "made_up_type", "channel": "#x"})
 
 
 def test_parse_dict_or_str():

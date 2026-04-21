@@ -34,8 +34,12 @@ def encode_side(text: str) -> str:
 
 
 def encode_sys(payload: dict[str, Any]) -> str:
-    """机对机控制消息：payload 里至少含 {'type': 'sys.xxx', 'nick': ..., 'body': ...}"""
-    return f"{SYS_PREFIX}{json.dumps(payload)}"
+    """机对机控制消息：payload 里至少含 {'type': 'sys.xxx', 'nick': ..., 'body': ...}
+
+    用 `ensure_ascii=False` 保留 UTF-8 中文（3 bytes/char）而非 \\uXXXX 转义（6 bytes/char），
+    给 IRC 512 字节 PRIVMSG 上限留出更多 payload 空间。JSON 标准允许 UTF-8 字符直出。
+    """
+    return f"{SYS_PREFIX}{json.dumps(payload, ensure_ascii=False)}"
 
 
 def make_sys_payload(nick: str, sys_type: str, body: dict[str, Any], ref_id: str | None = None) -> dict[str, Any]:
