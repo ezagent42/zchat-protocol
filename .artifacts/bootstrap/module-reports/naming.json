@@ -1,0 +1,21 @@
+{
+  "module": "naming",
+  "files": [
+    "zchat_protocol/naming.py"
+  ],
+  "description": "Agent 命名规范：统一 '{username}-{agent_name}' 作用域前缀格式。无脑 prepend，不做去重。IRC nick 分隔符用 '-'（RFC 2812 禁止 ':'）。11 行极简模块。",
+  "key_classes_functions": [
+    {"name": "AGENT_SEPARATOR", "file": "zchat_protocol/naming.py", "line": 3, "purpose": "agent 名分隔符常量 '-'"},
+    {"name": "scoped_name", "file": "zchat_protocol/naming.py", "line": 6, "purpose": "将 name 无条件加 username 前缀：scoped_name('helper','alice')→'alice-helper'；重复前缀不去重"}
+  ],
+  "public_interface": [
+    "AGENT_SEPARATOR",
+    "scoped_name(name: str, username: str) -> str"
+  ],
+  "depends_on": [],
+  "tests": ["tests/test_naming.py (3 用例 / 15 行)"],
+  "evidence_file_lines": [
+    "zchat_protocol/naming.py:3 (AGENT_SEPARATOR 常量)",
+    "zchat_protocol/naming.py:6-11 (scoped_name 实现)"
+  ]
+}

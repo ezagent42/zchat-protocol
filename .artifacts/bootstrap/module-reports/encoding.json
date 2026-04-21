@@ -1,0 +1,33 @@
+{
+  "module": "encoding",
+  "files": [
+    "zchat_protocol/irc_encoding.py"
+  ],
+  "description": "IRC PRIVMSG 内嵌前缀的编解码 — 三仓（bridge/channel-server/cli）共享的唯一真源。定义 5 种消息种类（msg/edit/side/sys/plain）的前缀常量、编码函数与统一 parse()。sys payload 带 id/nick/type/body/ref_id/ts 字段，用于机对机控制信令。纯函数，无 I/O、无状态。",
+  "key_classes_functions": [
+    {"name": "MSG_PREFIX", "file": "zchat_protocol/irc_encoding.py", "line": 18, "purpose": "普通消息前缀常量 '__msg:'"},
+    {"name": "EDIT_PREFIX", "file": "zchat_protocol/irc_encoding.py", "line": 19, "purpose": "编辑消息前缀常量 '__edit:'"},
+    {"name": "SIDE_PREFIX", "file": "zchat_protocol/irc_encoding.py", "line": 20, "purpose": "side 可见性前缀常量 '__side:'"},
+    {"name": "SYS_PREFIX", "file": "zchat_protocol/irc_encoding.py", "line": 21, "purpose": "机对机系统信令前缀常量 '__zchat_sys:'"},
+    {"name": "encode_msg", "file": "zchat_protocol/irc_encoding.py", "line": 24, "purpose": "编码 msg:'__msg:<id>:<text>'"},
+    {"name": "encode_edit", "file": "zchat_protocol/irc_encoding.py", "line": 28, "purpose": "编码 edit:'__edit:<id>:<text>'"},
+    {"name": "encode_side", "file": "zchat_protocol/irc_encoding.py", "line": 32, "purpose": "编码 side:'__side:<text>'"},
+    {"name": "encode_sys", "file": "zchat_protocol/irc_encoding.py", "line": 36, "purpose": "编码 sys: '__zchat_sys:<json>'，ensure_ascii=False 省 IRC 512B"},
+    {"name": "make_sys_payload", "file": "zchat_protocol/irc_encoding.py", "line": 45, "purpose": "构造 sys payload {id,nick,type,body,ref_id,ts}"},
+    {"name": "parse", "file": "zchat_protocol/irc_encoding.py", "line": 57, "purpose": "统一解析 content，返回 {kind, text/message_id/payload}；kind ∈ {msg,edit,side,sys,plain}；malformed 降级为 plain"}
+  ],
+  "public_interface": [
+    "MSG_PREFIX", "EDIT_PREFIX", "SIDE_PREFIX", "SYS_PREFIX",
+    "encode_msg(message_id, text)", "encode_edit(message_id, text)",
+    "encode_side(text)", "encode_sys(payload)",
+    "make_sys_payload(nick, sys_type, body, ref_id=None)",
+    "parse(content) -> {kind, ...}"
+  ],
+  "depends_on": ["json (stdlib)", "os (stdlib, urandom)", "time (stdlib)"],
+  "tests": ["tests/test_irc_encoding.py (14 用例 / 125 行)"],
+  "evidence_file_lines": [
+    "zchat_protocol/irc_encoding.py:18-21 (4 个前缀常量)",
+    "zchat_protocol/irc_encoding.py:24-54 (4 个 encode_* + make_sys_payload)",
+    "zchat_protocol/irc_encoding.py:57-94 (parse 函数分支)"
+  ]
+}

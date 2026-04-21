@@ -1,0 +1,28 @@
+{
+  "module": "tests",
+  "files": [
+    "tests/test_irc_encoding.py",
+    "tests/test_naming.py",
+    "tests/test_ws_messages.py"
+  ],
+  "description": "单元测试套件，纯 pytest，无外部依赖。每个源文件对应 1 个 test_*.py，覆盖前缀常量、编/解码 roundtrip、恶意/异常输入降级、payload 字段完整性、WSType 常量与 parse 错误路径。",
+  "key_classes_functions": [
+    {"name": "test_prefix_constants", "file": "tests/test_irc_encoding.py", "line": 13, "purpose": "断言 4 个前缀常量字面值"},
+    {"name": "test_encode_msg_roundtrip", "file": "tests/test_irc_encoding.py", "line": 20, "purpose": "encode_msg→parse roundtrip"},
+    {"name": "test_encode_sys_roundtrip", "file": "tests/test_irc_encoding.py", "line": 48, "purpose": "make_sys_payload+encode_sys→parse roundtrip"},
+    {"name": "test_parse_malformed_*_falls_back_to_plain", "file": "tests/test_irc_encoding.py", "line": 66, "purpose": "3 个 malformed 用例（msg/edit/sys 无冒号或坏 JSON）降级 plain"},
+    {"name": "test_encode_msg_text_with_colon", "file": "tests/test_irc_encoding.py", "line": 104, "purpose": "text 含冒号时只取首个冒号做分隔"},
+    {"name": "test_scoped_name_always_prepends_even_if_already_prefixed", "file": "tests/test_naming.py", "line": 12, "purpose": "无脑 prepend 不去重"},
+    {"name": "test_parse_known_types", "file": "tests/test_ws_messages.py", "line": 73, "purpose": "6 种已知 WSType 都能通过 parse"},
+    {"name": "test_parse_unknown_type_raises", "file": "tests/test_ws_messages.py", "line": 81, "purpose": "未知 type 抛 ValueError"},
+    {"name": "test_parse_invalid_type_raises_typeerror", "file": "tests/test_ws_messages.py", "line": 97, "purpose": "非 str/dict 输入抛 TypeError"}
+  ],
+  "public_interface": [],
+  "depends_on": ["pytest", "zchat_protocol.irc_encoding", "zchat_protocol.ws_messages", "zchat_protocol.naming"],
+  "tests": [],
+  "evidence_file_lines": [
+    "tests/test_irc_encoding.py:1-126 (14 用例)",
+    "tests/test_naming.py:1-15 (3 用例)",
+    "tests/test_ws_messages.py:1-115 (13 用例)"
+  ]
+}

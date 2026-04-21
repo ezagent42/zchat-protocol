@@ -1,0 +1,94 @@
+{
+  "project_root": "/home/yaosh/projects/zchat/zchat-protocol",
+  "files": [
+    {
+      "path": ".git",
+      "size_bytes": 39,
+      "lines": 1,
+      "extension": ""
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "size_bytes": 306,
+      "lines": 17,
+      "extension": ".yml"
+    },
+    {
+      "path": ".gitignore",
+      "size_bytes": 81,
+      "lines": 8,
+      "extension": ""
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 1066,
+      "lines": 21,
+      "extension": ""
+    },
+    {
+      "path": "pyproject.toml",
+      "size_bytes": 480,
+      "lines": 21,
+      "extension": ".toml"
+    },
+    {
+      "path": "tests/test_irc_encoding.py",
+      "size_bytes": 3651,
+      "lines": 125,
+      "extension": ".py"
+    },
+    {
+      "path": "tests/test_naming.py",
+      "size_bytes": 498,
+      "lines": 15,
+      "extension": ".py"
+    },
+    {
+      "path": "tests/test_ws_messages.py",
+      "size_bytes": 3559,
+      "lines": 114,
+      "extension": ".py"
+    },
+    {
+      "path": "uv.lock",
+      "size_bytes": 4655,
+      "lines": 79,
+      "extension": ".lock"
+    },
+    {
+      "path": "zchat_protocol/__init__.py",
+      "size_bytes": 370,
+      "lines": 13,
+      "extension": ".py"
+    },
+    {
+      "path": "zchat_protocol/irc_encoding.py",
+      "size_bytes": 2912,
+      "lines": 94,
+      "extension": ".py"
+    },
+    {
+      "path": "zchat_protocol/naming.py",
+      "size_bytes": 308,
+      "lines": 11,
+      "extension": ".py"
+    },
+    {
+      "path": "zchat_protocol/ws_messages.py",
+      "size_bytes": 2567,
+      "lines": 82,
+      "extension": ".py"
+    }
+  ],
+  "summary": {
+    "total_files": 13,
+    "total_lines": 601,
+    "by_extension": {
+      ".py": 7,
+      "(no ext)": 3,
+      ".lock": 1,
+      ".toml": 1,
+      ".yml": 1
+    }
+  }
+}

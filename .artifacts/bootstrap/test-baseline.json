@@ -1,0 +1,23 @@
+{
+  "project_root": "/home/yaosh/projects/zchat/zchat-protocol",
+  "timestamp": "2026-04-21T12:08:30Z",
+  "test_runs": [
+    {
+      "command": "uv run pytest tests -v",
+      "exit_code": 0,
+      "duration_seconds": 4.4,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "stdout_tail": "\ntests/test_naming.py::test_separator_is_dash PASSED                      [ 46%]\ntests/test_naming.py::test_scoped_name_adds_prefix PASSED                [ 50%]\ntests/test_naming.py::test_scoped_name_always_prepends_even_if_already_prefixed PASSED [ 53%]\ntests/test_ws_messages.py::test_build_message_minimum PASSED             [ 56%]\ntests/test_ws_messages.py::test_build_message_with_message_id PASSED     [ 59%]\ntests/test_ws_messages.py::test_message_has_no_visibility_field PASSED   [ 62%]\ntests/test_ws_messages.py::test_build_command PASSED                     [ 65%]\ntests/test_ws_messages.py::test_build_command_no_args PASSED             [ 68%]\ntests/test_ws_messages.py::test_build_event PASSED                       [ 71%]\ntests/test_ws_messages.py::test_build_event_no_data PASSED               [ 75%]\ntests/test_ws_messages.py::test_build_register PASSED                    [ 78%]\ntests/test_ws_messages.py::test_build_register_no_capabilities PASSED    [ 81%]\ntests/test_ws_messages.py::test_parse_known_types PASSED                 [ 84%]\ntests/test_ws_messages.py::test_parse_unknown_type_raises PASSED         [ 87%]\ntests/test_ws_messages.py::test_parse_dict_or_str PASSED                 [ 90%]\ntests/test_ws_messages.py::test_parse_invalid_type_raises_typeerror PASSED [ 93%]\ntests/test_ws_messages.py::test_parse_no_type_field_raises PASSED        [ 96%]\ntests/test_ws_messages.py::test_wstype_constants PASSED                  [100%]\n\n=============================== warnings summary ===============================\n.venv/lib/python3.13/site-packages/_pytest/config/__init__.py:1428\n  /home/yaosh/projects/zchat/zchat-protocol/.venv/lib/python3.13/site-packages/_pytest/config/__init__.py:1428: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 32 passed, 1 warning in 0.20s =========================\n",
+      "stderr_tail": ""
+    }
+  ],
+  "summary": {
+    "total_suites": 1,
+    "total_passed": 32,
+    "total_failed": 0,
+    "total_skipped": 0,
+    "all_passed": true
+  }
+}

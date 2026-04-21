@@ -1,0 +1,31 @@
+{
+  "module": "ws_messages",
+  "files": [
+    "zchat_protocol/ws_messages.py"
+  ],
+  "description": "bridge ↔ channel-server 的 WebSocket JSON 信封合同。只管包装层（type/channel/source/content/...），消息内容本身的种类前缀由 irc_encoding 承载。定义 6 种 WSType 常量与 4 个 build_* 构造器、1 个 parse() 校验器。纯函数、无状态。",
+  "key_classes_functions": [
+    {"name": "WSType", "file": "zchat_protocol/ws_messages.py", "line": 12, "purpose": "WS 消息类型常量集：REGISTER/REGISTERED/MESSAGE/COMMAND/EVENT/ACK；COMMAND 与 ACK 预留未用"},
+    {"name": "build_register", "file": "zchat_protocol/ws_messages.py", "line": 21, "purpose": "构造 bridge→cs 注册信封 {type,bridge_type,instance_id,capabilities}"},
+    {"name": "build_message", "file": "zchat_protocol/ws_messages.py", "line": 30, "purpose": "构造双向 message 信封 {type,channel,source,content,message_id?}"},
+    {"name": "build_command", "file": "zchat_protocol/ws_messages.py", "line": 47, "purpose": "构造 command 信封 {type,channel,source,command,args}"},
+    {"name": "build_event", "file": "zchat_protocol/ws_messages.py", "line": 57, "purpose": "构造 cs→bridge event 信封 {type,channel,event,data}"},
+    {"name": "parse", "file": "zchat_protocol/ws_messages.py", "line": 66, "purpose": "接受 str 或 dict，校验 type 字段属于已知集合；未知 type 抛 ValueError，非 str/dict 抛 TypeError"}
+  ],
+  "public_interface": [
+    "WSType.REGISTER", "WSType.REGISTERED", "WSType.MESSAGE",
+    "WSType.COMMAND", "WSType.EVENT", "WSType.ACK",
+    "build_register(bridge_type, instance_id, capabilities=None)",
+    "build_message(channel, source, content, message_id=None)",
+    "build_command(channel, source, command, args=None)",
+    "build_event(channel, event, data=None)",
+    "parse(raw: str|dict) -> dict"
+  ],
+  "depends_on": ["json (stdlib)"],
+  "tests": ["tests/test_ws_messages.py (13 用例 / 114 行)"],
+  "evidence_file_lines": [
+    "zchat_protocol/ws_messages.py:12-18 (WSType 常量)",
+    "zchat_protocol/ws_messages.py:21-63 (4 个 build_*)",
+    "zchat_protocol/ws_messages.py:66-82 (parse 分派 + 校验)"
+  ]
+}

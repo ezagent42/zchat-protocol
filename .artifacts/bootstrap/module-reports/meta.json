@@ -1,0 +1,29 @@
+{
+  "module": "meta",
+  "files": [
+    "pyproject.toml",
+    "zchat_protocol/__init__.py",
+    ".github/workflows/publish.yml",
+    "LICENSE",
+    ".gitignore",
+    "uv.lock"
+  ],
+  "description": "打包、发布、元信息层。zchat-protocol v0.2.0，纯格式合同库，零运行时依赖。__init__.py 显式声明只暴露 3 个子模块（irc_encoding/ws_messages/naming），并在 docstring 中明示『不包含任何运行时状态、I/O、业务逻辑』作为架构边界。MIT license，Python ≥3.11，hatchling build，通过 GitHub Actions publish.yml 发布到 PyPI。",
+  "key_classes_functions": [
+    {"name": "__all__", "file": "zchat_protocol/__init__.py", "line": 13, "purpose": "公共 API 白名单：['irc_encoding','ws_messages','naming']"},
+    {"name": "package docstring", "file": "zchat_protocol/__init__.py", "line": 1, "purpose": "架构边界宣言：本包只含 3 个子模块，不含运行时状态/IO/业务逻辑"},
+    {"name": "project.name", "file": "pyproject.toml", "line": 2, "purpose": "PyPI 包名 'zchat-protocol' v0.2.0"},
+    {"name": "project.dependencies", "file": "pyproject.toml", "line": 6, "purpose": "空依赖数组 — 零运行时依赖"},
+    {"name": "requires-python", "file": "pyproject.toml", "line": 5, "purpose": "Python ≥3.11"},
+    {"name": "build-system", "file": "pyproject.toml", "line": 14, "purpose": "hatchling 打包"}
+  ],
+  "public_interface": [
+    "import zchat_protocol → irc_encoding, ws_messages, naming"
+  ],
+  "depends_on": ["hatchling (build)", "pytest (dev)"],
+  "tests": [],
+  "evidence_file_lines": [
+    "zchat_protocol/__init__.py:1-14 (包 docstring + __all__)",
+    "pyproject.toml:1-21 (project 元信息 + build-system + dev deps)"
+  ]
+}
